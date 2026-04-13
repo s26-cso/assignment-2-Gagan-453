@@ -1,0 +1,2 @@
+strings target_Gagan-453 > strings.text
+Then search for "You have passed" in the strings and find password nearby
