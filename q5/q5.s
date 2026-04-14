@@ -32,8 +32,8 @@ main:
     mv s1, a0 # s1 = file_size
     addi s1, s1, -1
 
-/*
-    #IF THE FINAL CHAR IS \n
+
+    #suppose THE FINAL CHAR IS \n
     mv a0, s0
     mv a1, s1
     li a2, 0
@@ -45,7 +45,7 @@ main:
     
     bne a0, t0, file_ready # if not a newline, skip to file_ready
     
-    addi s1, s1, -1 */
+    addi s1, s1, -1
 
 file_ready:
     #back to begining of file

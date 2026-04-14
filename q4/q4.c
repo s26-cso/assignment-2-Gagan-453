@@ -7,10 +7,9 @@ int main() {
     char op[10]; // op name
     int num1, num2;
 
-    while (1) {
+    while (scanf("%9s %d %d", op, &num1, &num2) == 3) {
         
         // "./lib<op>.so" is the shared library file
-        scanf("%9s %d %d", op, &num1, &num2);
         char lib_name[32];
         snprintf(lib_name, sizeof(lib_name), "./lib%s.so", op);
 
