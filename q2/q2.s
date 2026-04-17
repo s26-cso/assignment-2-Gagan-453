@@ -1,5 +1,6 @@
     .section .rodata
-fmt_num: .string "%d "
+fmt_num: .string "%d"
+fmt_space: .string " "
 fmt_nl: .string "\n"
 
     .section .text
@@ -23,9 +24,8 @@ main:
     mv s0, a0 # argc
     mv s1, a1 #argv
 
-    li t0, 1
     addi s4, s0, -1 # no of args
-    ble s4, t0, exit_prog
+    blez s4, exit_prog
 
     slli a0, s4, 2 # a0 = a0*4
     call malloc
@@ -138,15 +138,24 @@ print_loop:
     add t0, s5, t0
     lw a1, 0(t0)# a1 = result[i]
 
-    lla a0, fmt_num # "%d "
+    lla a0, fmt_num # "%d"
     call printf
 
     addi s2, s2, 1
+    bge s2, s4, print_nl
+    lla a0, fmt_space
+    call printf
     j print_loop
 
 print_nl:
     lla a0, fmt_nl # "\n"
     call printf
+    mv a0, s3
+    call free
+    mv a0, s5
+    call free
+    mv a0, s6
+    call free
 
 exit_prog:
     li a0, 0
